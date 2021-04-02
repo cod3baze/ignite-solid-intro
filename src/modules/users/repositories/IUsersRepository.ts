@@ -9,7 +9,7 @@ interface IUsersRepository {
   create({ name, email }: ICreateUserDTO): User;
   findById(id: string): User | undefined;
   findByEmail(email: string): User | undefined;
-  turnAdmin(user: User): User;
+  turnAdmin(receivedUser: string): User;
   list(user_id: string | string[]): User[];
 }
 

@@ -32,7 +32,7 @@ class UsersRepository implements IUsersRepository {
     return element;
   }
 
-  findById(id: string | string[]): User | undefined {
+  findById(id: string): User | undefined {
     const element = this.users.find((user) => user.id === id);
 
     return element;
@@ -44,13 +44,18 @@ class UsersRepository implements IUsersRepository {
     return element;
   }
 
-  turnAdmin(receivedUser: User): User {
-    const userExists = this.findById(receivedUser.id);
+  turnAdmin(receivedUser: string): User {
+    const userExists = this.findById(receivedUser);
 
     if (!userExists) {
       throw new Error(`User ${receivedUser} do not exists`);
     }
 
+    Object.assign(userExists, {
+      admin: true,
+    });
+
+    console.log(userExists);
     return userExists;
   }
 
