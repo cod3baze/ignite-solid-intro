@@ -2,10 +2,6 @@ import { Request, Response } from "express";
 
 import { ListAllUsersUseCase } from "./ListAllUsersUseCase";
 
-interface IRequest {
-  user_id: string | string[];
-}
-
 class ListAllUsersController {
   constructor(private listAllUsersUseCase: ListAllUsersUseCase) {}
 
