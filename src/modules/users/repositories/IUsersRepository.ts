@@ -9,8 +9,8 @@ interface IUsersRepository {
   create({ name, email }: ICreateUserDTO): User;
   findById(id: string): User | undefined;
   findByEmail(email: string): User | undefined;
-  turnAdmin(receivedUser: string): User;
-  list(user_id: string | string[]): User[];
+  turnAdmin(user: User): User;
+  list(): User[];
 }
 
 export { IUsersRepository, ICreateUserDTO };

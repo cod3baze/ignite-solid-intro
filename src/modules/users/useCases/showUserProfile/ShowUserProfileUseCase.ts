@@ -10,6 +10,9 @@ class ShowUserProfileUseCase {
 
   execute({ user_id }: IRequest): User {
     const element = this.usersRepository.findById(user_id);
+    if (!element) {
+      throw new Error(`User ${element} not found`);
+    }
 
     return element;
   }

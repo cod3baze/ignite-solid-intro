@@ -44,27 +44,15 @@ class UsersRepository implements IUsersRepository {
     return element;
   }
 
-  turnAdmin(receivedUser: string): User {
-    const userExists = this.findById(receivedUser);
-
-    if (!userExists) {
-      throw new Error(`User ${receivedUser} do not exists`);
-    }
-
-    Object.assign(userExists, {
+  turnAdmin(receivedUser: User): User {
+    Object.assign(receivedUser, {
       admin: true,
     });
 
-    console.log(userExists);
-    return userExists;
+    return receivedUser;
   }
 
-  list(user_id: string): User[] {
-    const isAdmin = this.findById(user_id);
-    if (!isAdmin.admin) {
-      throw new Error(`User ${user_id} is not a admin`);
-    }
-
+  list(): User[] {
     return this.users;
   }
 }
