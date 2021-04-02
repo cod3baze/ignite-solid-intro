@@ -2,14 +2,23 @@ import { Request, Response } from "express";
 
 import { ListAllUsersUseCase } from "./ListAllUsersUseCase";
 
+interface IRequest {
+  user_id: string | string[];
+}
+
 class ListAllUsersController {
   constructor(private listAllUsersUseCase: ListAllUsersUseCase) {}
 
   handle(request: Request, response: Response): Response {
     const { user_id } = request.headers;
-    const list = this.listAllUsersUseCase.execute({ user_id });
 
-    return response.json(list);
+    try {
+      const list = this.listAllUsersUseCase.execute({ user_id });
+
+      return response.json(list);
+    } catch (err) {
+      return response.status(400).json({ error: err.message });
+    }
   }
 }
 

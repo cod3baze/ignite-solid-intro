@@ -2,7 +2,7 @@ import { User } from "../../model/User";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 
 interface IRequest {
-  user_id: string;
+  user_id: string | string[];
 }
 
 class ListAllUsersUseCase {
@@ -14,7 +14,7 @@ class ListAllUsersUseCase {
       throw new Error(`User ${user_id} is not a admin`);
     }
 
-    return this.usersRepository.list(user_id);
+    return this.usersRepository.list();
   }
 }
 
